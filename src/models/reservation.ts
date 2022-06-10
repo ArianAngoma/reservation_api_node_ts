@@ -2,7 +2,9 @@ import {model, Schema} from 'mongoose';
 
 import {IReservation, EReservationStatus, EPaymentMethod} from '../interfaces';
 
-const reservationStatus: EReservationStatus[] = Object.values(EReservationStatus);
+const reservationStatus: EReservationStatus[] = Object.values(
+    EReservationStatus,
+);
 const paymentMethod: EPaymentMethod[] = Object.values(EPaymentMethod);
 
 const ReservationSchema = new Schema<IReservation>({
@@ -53,4 +55,7 @@ ReservationSchema.methods.toJSON = function() {
   return reservation;
 };
 
-export const Reservation = model<IReservation>('Reservation', ReservationSchema);
+export const Reservation = model<IReservation>(
+    'Reservation',
+    ReservationSchema,
+);

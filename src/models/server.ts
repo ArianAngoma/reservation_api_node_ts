@@ -2,16 +2,21 @@ import express, {Application} from 'express';
 import cors from 'cors';
 
 import {dbConnection} from '../database/config';
+import userRouter from '../routes/user';
 
 class Server {
   app: Application;
   readonly port: string;
+  apiPaths = {
+    user: '/api/v1/user',
+  };
 
   constructor() {
     this.app = express();
     this.port = process.env.PORT || '4000';
     this.connectDB();
     this.middlewares();
+    this.routes();
   }
 
   async connectDB(): Promise<void> {
@@ -21,6 +26,10 @@ class Server {
   middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
+  }
+
+  routes() {
+    this.app.use(this.apiPaths.user, userRouter);
   }
 
   listen() {
