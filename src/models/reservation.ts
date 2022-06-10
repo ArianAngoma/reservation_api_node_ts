@@ -1,8 +1,9 @@
 import {model, Schema} from 'mongoose';
 
-import {IReservation, EReservationStatus} from '../interfaces';
+import {IReservation, EReservationStatus, EPaymentMethod} from '../interfaces';
 
 const reservationStatus: EReservationStatus[] = Object.values(EReservationStatus);
+const paymentMethod: EPaymentMethod[] = Object.values(EPaymentMethod);
 
 const ReservationSchema = new Schema<IReservation>({
   userId: {
@@ -18,6 +19,19 @@ const ReservationSchema = new Schema<IReservation>({
   amount: {
     type: Number,
     required: true,
+  },
+  stayDays: {
+    type: Number,
+    required: true,
+    min: 1,
+  },
+  transactionCode: {
+    type: String,
+  },
+  paymentMethod: {
+    type: String,
+    required: true,
+    enum: paymentMethod,
   },
   status: {
     type: String,

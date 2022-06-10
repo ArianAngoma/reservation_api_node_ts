@@ -22,6 +22,12 @@ const UserSchema = new Schema<IUser>({
     trim: true,
     unique: true,
   },
+  identification: {
+    type: Number,
+    required: true,
+    trim: true,
+    unique: true,
+  },
   role: {
     type: String,
     required: true,

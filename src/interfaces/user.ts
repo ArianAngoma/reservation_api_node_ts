@@ -8,6 +8,7 @@ export interface IUser {
   name: string;
   username: string;
   email: string;
+  identification: number;
   role: EUserRole;
   password: string;
   createdAt: string;
