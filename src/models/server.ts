@@ -1,6 +1,8 @@
 import express, {Application} from 'express';
 import cors from 'cors';
 
+import {dbConnection} from '../database/config';
+
 class Server {
   app: Application;
   readonly port: string;
@@ -8,7 +10,12 @@ class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || '4000';
+    this.connectDB();
     this.middlewares();
+  }
+
+  async connectDB(): Promise<void> {
+    await dbConnection();
   }
 
   middlewares() {
