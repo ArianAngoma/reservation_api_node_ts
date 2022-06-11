@@ -39,3 +39,26 @@ export const createNewRoom = async (
     throw new Error(e);
   }
 };
+
+export const updateRoomById = async (
+    id: string,
+    data: Partial<IRoom>,
+): Promise<IRoom | null> => {
+  try {
+    return await Room.findByIdAndUpdate(id, {...data}, {new: true});
+  } catch (e) {
+    console.log(e);
+    throw new Error(e);
+  }
+};
+
+export const findRoomById = async (
+    id: string,
+): Promise<IRoom | null> => {
+  try {
+    return await Room.findById(id);
+  } catch (e) {
+    console.log(e);
+    throw new Error(e);
+  }
+};

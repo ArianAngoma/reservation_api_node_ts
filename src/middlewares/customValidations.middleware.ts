@@ -1,7 +1,7 @@
 import {z, RefinementCtx} from 'zod';
 
 import {
-  findRoom,
+  findRoom, findRoomById,
   findRoomExceptSpecificCollections,
   findUser,
 } from '../entities';
@@ -76,6 +76,20 @@ export const roomNameExistsExceptSelf = async (
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Name already exists',
+    });
+  }
+};
+
+export const roomExistsById = async (
+    id: string,
+    ctx: RefinementCtx,
+): Promise<void> => {
+  const room = await findRoomById(id);
+
+  if (!room) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Room does not exist',
     });
   }
 };

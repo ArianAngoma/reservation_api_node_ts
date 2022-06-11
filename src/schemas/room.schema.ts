@@ -1,5 +1,6 @@
 import {z} from 'zod';
 import {
+  roomExistsById,
   roomNameExists,
   roomNameExistsExceptSelf,
 } from '../middlewares';
@@ -72,6 +73,6 @@ export const editRoomSchema = z.object({
     id: z.string({
       required_error: 'Id is required',
       invalid_type_error: 'Id must be a string',
-    }),
+    }).superRefine(roomExistsById),
   }),
 });

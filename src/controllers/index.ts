@@ -1,2 +1,2 @@
 export {register, login} from './user.controller';
-export {createRoom} from './room.controller';
+export {createRoom, updateRoom} from './room.controller';
