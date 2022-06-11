@@ -13,6 +13,9 @@ export const schemaValidation = (
       body: req.body,
       params: req.params,
       query: req.query,
+      header: req.headers,
+      // @ts-ignore
+      user: req.user,
     });
     next();
   } catch (error) {

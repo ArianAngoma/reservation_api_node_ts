@@ -2,13 +2,14 @@ import express, {Application} from 'express';
 import cors from 'cors';
 
 import {dbConnection} from '../database/config.database';
-import userRouter from '../routes/user.route';
+import {userRouter, roomRouter} from '../routes';
 
 class Server {
   app: Application;
   readonly port: string;
   apiPaths = {
     user: '/api/v1/user',
+    room: '/api/v1/room',
   };
 
   constructor() {
@@ -30,6 +31,7 @@ class Server {
 
   routes() {
     this.app.use(this.apiPaths.user, userRouter);
+    this.app.use(this.apiPaths.room, roomRouter);
   }
 
   listen() {

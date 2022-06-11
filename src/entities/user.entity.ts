@@ -2,7 +2,7 @@ import {IUser} from '../interfaces';
 import {User} from '../models';
 
 export const findUser = async (
-    data: Partial<IUser>,
+    data: Partial<Omit<IUser, 'id'>>,
 ): Promise<IUser | null> => {
   try {
     return await User.findOne({...data});
@@ -18,6 +18,17 @@ export const createUser = async (
   try {
     const user = new User({...data});
     return await user.save();
+  } catch (e) {
+    console.log(e);
+    throw new Error(e);
+  }
+};
+
+export const findUserById = async (
+    id: string,
+): Promise<IUser | null> => {
+  try {
+    return await User.findById(id);
   } catch (e) {
     console.log(e);
     throw new Error(e);

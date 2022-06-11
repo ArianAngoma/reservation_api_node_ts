@@ -1,8 +1,12 @@
 import {z, RefinementCtx} from 'zod';
 
-import {findUser} from '../entities';
+import {
+  findRoom,
+  findRoomExceptSpecificCollections,
+  findUser,
+} from '../entities';
 
-export const usernameExists = async (
+export const userUsernameExists = async (
     username: string,
     ctx: RefinementCtx,
 ): Promise<void> => {
@@ -16,7 +20,7 @@ export const usernameExists = async (
   }
 };
 
-export const identificationExists = async (
+export const userIdentificationExists = async (
     identification: number,
     ctx: RefinementCtx,
 ): Promise<void> => {
@@ -30,7 +34,7 @@ export const identificationExists = async (
   }
 };
 
-export const emailExists = async (
+export const userEmailExists = async (
     email: string,
     ctx: RefinementCtx,
 ): Promise<void> => {
@@ -40,6 +44,38 @@ export const emailExists = async (
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Email already exists',
+    });
+  }
+};
+
+export const roomNameExists = async (
+    name: string,
+    ctx: RefinementCtx,
+): Promise<void> => {
+  const room = await findRoom({name});
+
+  if (!!room) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Name already exists',
+    });
+  }
+};
+
+export const roomNameExistsExceptSelf = async (
+    name: string,
+    ctx: RefinementCtx,
+): Promise<void> => {
+  const room = await findRoomExceptSpecificCollections(
+      {name},
+      'name',
+      [name],
+  );
+
+  if (!!room) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Name already exists',
     });
   }
 };

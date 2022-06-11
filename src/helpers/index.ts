@@ -1,1 +1,2 @@
-export {generateToken} from './jwt.helper';
+export {generateToken, validateJwt} from './jwt.helper';
+export {validateAdmin} from './validations.helper';

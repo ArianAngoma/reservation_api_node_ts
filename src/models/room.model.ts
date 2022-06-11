@@ -9,6 +9,7 @@ const RoomSchema = new Schema<IRoom>({
     type: String,
     required: true,
     trim: true,
+    unique: true,
   },
   floor: {
     type: Number,

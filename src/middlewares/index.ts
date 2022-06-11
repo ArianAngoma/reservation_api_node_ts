@@ -1,4 +1,5 @@
 export {schemaValidation} from './validateFields.middleware';
 export {
-  emailExists, identificationExists, usernameExists,
+  userEmailExists, userIdentificationExists, userUsernameExists,
+  roomNameExists, roomNameExistsExceptSelf,
 } from './customValidations.middleware';

@@ -4,19 +4,16 @@ import {schemaValidation} from '../middlewares';
 import {registerSchema, loginSchema} from '../schemas';
 import {login, register} from '../controllers';
 
-const router = Router();
+export const userRouter = Router();
 
-router.post(
+userRouter.post(
     '/register',
     [schemaValidation(registerSchema)],
     register,
 );
 
-router.post(
+userRouter.post(
     '/login',
     [schemaValidation(loginSchema)],
     login,
 );
-
-
-export default router;

@@ -1,9 +1,9 @@
 import {z} from 'zod';
 
 import {
-  usernameExists,
-  emailExists,
-  identificationExists,
+  userUsernameExists,
+  userEmailExists,
+  userIdentificationExists,
 } from '../middlewares';
 
 export const registerSchema = z.object({
@@ -19,7 +19,7 @@ export const registerSchema = z.object({
       invalid_type_error: 'Username must be a string',
     }).min(3, {message: 'Username must be at least 3 characters'})
         .max(50, {message: 'Username must be at most 50 characters'})
-        .superRefine(usernameExists),
+        .superRefine(userUsernameExists),
 
     email: z.string({
       required_error: 'Email is required',
@@ -27,13 +27,13 @@ export const registerSchema = z.object({
     }).min(3, {message: 'Email must be at least 3 characters'})
         .max(50, {message: 'Email must be at most 50 characters'})
         .email({message: 'Email must be a valid email'})
-        .superRefine(emailExists),
+        .superRefine(userEmailExists),
 
     identification: z.number({
       required_error: 'Identification is required',
       invalid_type_error: 'Identification must be a number',
     }).int({message: 'Identification must be an integer'})
-        .superRefine(identificationExists),
+        .superRefine(userIdentificationExists),
 
     role: z.enum(['admin', 'client'], {
       invalid_type_error: 'Role must be admin or client',
