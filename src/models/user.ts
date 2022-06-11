@@ -1,8 +1,8 @@
 import {model, Schema} from 'mongoose';
 
-import {EUserRole, IUser} from '../interfaces';
+import {TUserRole, IUser} from '../interfaces';
 
-const userRole: EUserRole[] = Object.values(EUserRole);
+const userRole: TUserRole[] = ['admin', 'client'];
 
 const UserSchema = new Schema<IUser>({
   name: {
@@ -32,7 +32,7 @@ const UserSchema = new Schema<IUser>({
     type: String,
     required: true,
     enum: userRole,
-    default: EUserRole.client,
+    default: 'client',
   },
   password: {
     type: String,

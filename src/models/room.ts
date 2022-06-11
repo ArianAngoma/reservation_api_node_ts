@@ -1,8 +1,8 @@
 import {model, Schema} from 'mongoose';
 
-import {ERoomType, IRoom} from '../interfaces';
+import {TRoomType, IRoom} from '../interfaces';
 
-const roomType: ERoomType[] = Object.values(ERoomType);
+const roomType: TRoomType[] = ['personal', 'group', 'matrimonial'];
 
 const RoomSchema = new Schema<IRoom>({
   name: {
@@ -24,7 +24,7 @@ const RoomSchema = new Schema<IRoom>({
     type: String,
     required: true,
     enum: roomType,
-    default: ERoomType.personal,
+    default: 'personal',
   },
   isReserved: {
     type: Boolean,

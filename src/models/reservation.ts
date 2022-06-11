@@ -1,11 +1,9 @@
 import {model, Schema} from 'mongoose';
 
-import {IReservation, EReservationStatus, EPaymentMethod} from '../interfaces';
+import {IReservation, TReservationStatus, TPaymentMethod} from '../interfaces';
 
-const reservationStatus: EReservationStatus[] = Object.values(
-    EReservationStatus,
-);
-const paymentMethod: EPaymentMethod[] = Object.values(EPaymentMethod);
+const reservationStatus: TReservationStatus[] = ['pending', 'paid', 'deleted'];
+const paymentMethod: TPaymentMethod[] = ['cash', 'card'];
 
 const ReservationSchema = new Schema<IReservation>({
   userId: {
@@ -39,7 +37,7 @@ const ReservationSchema = new Schema<IReservation>({
     type: String,
     required: true,
     enum: reservationStatus,
-    default: EReservationStatus.pending,
+    default: 'pending',
   },
 }, {
   timestamps: true,

@@ -1,15 +1,11 @@
-export enum ERoomType {
-  personal = 'personal',
-  matrimonial = 'matrimonial',
-  group = 'group',
-}
+export type TRoomType = 'personal' | 'matrimonial' | 'group';
 
 export interface IRoom {
   id: string;
   name: string;
   floor: number;
   hasBathroom: boolean;
-  type: ERoomType;
+  type: TRoomType;
   isReserved: boolean;
   createdAt: string;
   updatedAt: string;

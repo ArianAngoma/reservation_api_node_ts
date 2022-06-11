@@ -16,7 +16,6 @@
   ],
   "rules": {
     "require-jsdoc": "off",
-    "no-unused-vars": "off",
     "new-cap": "off"
   }
 }

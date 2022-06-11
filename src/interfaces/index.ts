@@ -1,3 +1,3 @@
-export {IUser, EUserRole} from './user';
-export {IRoom, ERoomType} from './room';
-export {IReservation, EReservationStatus, EPaymentMethod} from './reservation';
+export {IUser, TUserRole} from './user';
+export {IRoom, TRoomType} from './room';
+export {IReservation, TReservationStatus, TPaymentMethod} from './reservation';

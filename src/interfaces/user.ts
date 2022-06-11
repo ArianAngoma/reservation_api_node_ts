@@ -1,7 +1,4 @@
-export enum EUserRole {
-  admin = 'admin',
-  client = 'client',
-}
+export type TUserRole = 'admin' | 'client';
 
 export interface IUser {
   id: string;
@@ -9,7 +6,7 @@ export interface IUser {
   username: string;
   email: string;
   identification: number;
-  role: EUserRole;
+  role: TUserRole;
   password: string;
   createdAt: string;
   updatedAt: string;

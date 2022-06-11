@@ -1,15 +1,8 @@
 import {Types} from 'mongoose';
 
-export enum EReservationStatus {
-  pending = 'pending',
-  paid = 'paid',
-  deleted = 'deleted',
-}
+export type TReservationStatus = 'pending' | 'paid' | 'deleted';
 
-export enum EPaymentMethod {
-  cash = 'cash',
-  card = 'card',
-}
+export type TPaymentMethod = 'cash' | 'card';
 
 export interface IReservation {
   id: string;
@@ -18,8 +11,8 @@ export interface IReservation {
   amount: number;
   stayDays: number;
   transactionCode?: string;
-  paymentMethod?: EPaymentMethod;
-  status: EReservationStatus;
+  paymentMethod?: TPaymentMethod;
+  status: TReservationStatus;
   createdAt: string;
   updatedAt: string;
 }
