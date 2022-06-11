@@ -45,6 +45,7 @@ const ReservationSchema = new Schema<IReservation>({
 
 ReservationSchema.methods.toJSON = function() {
   const {
+    // eslint-disable-next-line no-unused-vars
     __v,
     _id,
     ...reservation

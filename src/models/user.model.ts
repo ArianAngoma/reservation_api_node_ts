@@ -45,6 +45,7 @@ const UserSchema = new Schema<IUser>({
 
 UserSchema.methods.toJSON = function() {
   const {
+    // eslint-disable-next-line no-unused-vars
     __v,
     _id,
     ...user

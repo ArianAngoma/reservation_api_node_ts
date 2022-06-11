@@ -37,6 +37,7 @@ const RoomSchema = new Schema<IRoom>({
 
 RoomSchema.methods.toJSON = function() {
   const {
+    // eslint-disable-next-line no-unused-vars
     __v,
     _id,
     ...room

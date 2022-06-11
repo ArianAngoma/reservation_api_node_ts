@@ -1,6 +1,6 @@
 import {z, RefinementCtx} from 'zod';
 
-import {findUser} from '../entities/user';
+import {findUser} from '../entities';
 
 export const usernameExists = async (
     username: string,
@@ -25,7 +25,7 @@ export const identificationExists = async (
   if (!!user) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
-      message: 'Email already exists',
+      message: 'Identification already exists',
     });
   }
 };
