@@ -1,2 +1,4 @@
 export {findUser, createUser, findUserById} from './user.entity';
-export {findRoom, findRoomExceptSpecificCollections} from './room.entity';
+export {
+  findRoom, findRoomExceptSpecificCollections, createNewRoom,
+} from './room.entity';

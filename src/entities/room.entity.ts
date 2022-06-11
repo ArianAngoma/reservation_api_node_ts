@@ -27,3 +27,15 @@ export const findRoomExceptSpecificCollections = async (
     throw new Error(e);
   }
 };
+
+export const createNewRoom = async (
+    data: Partial<IRoom>,
+): Promise<IRoom> => {
+  try {
+    const room = new Room({...data});
+    return await room.save();
+  } catch (e) {
+    console.log(e);
+    throw new Error(e);
+  }
+};

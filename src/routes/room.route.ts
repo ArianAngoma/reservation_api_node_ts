@@ -3,6 +3,7 @@ import {Router} from 'express';
 import {schemaValidation} from '../middlewares';
 import {createRoomSchema, editRoomSchema} from '../schemas';
 import {validateJwt, validateAdmin} from '../helpers';
+import {createRoom} from '../controllers';
 
 export const roomRouter = Router();
 
@@ -13,7 +14,7 @@ roomRouter.post(
       validateAdmin,
       schemaValidation(createRoomSchema),
     ],
-    (req: any, res: any) => console.log(req.body),
+    createRoom,
 );
 
 roomRouter.put(
