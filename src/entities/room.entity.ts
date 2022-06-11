@@ -62,3 +62,14 @@ export const findRoomById = async (
     throw new Error(e);
   }
 };
+
+export const deleteRoomById = async (
+    id: string,
+): Promise<IRoom | null> => {
+  try {
+    return await Room.findByIdAndDelete(id);
+  } catch (e) {
+    console.log(e);
+    throw new Error(e);
+  }
+};

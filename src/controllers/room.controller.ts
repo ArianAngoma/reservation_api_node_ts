@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 
-import {createNewRoom, updateRoomById} from '../entities';
+import {createNewRoom, deleteRoomById, updateRoomById} from '../entities';
 
 export const createRoom = async (
     req: Request,
@@ -25,6 +25,20 @@ export const updateRoom = async (
   const {id} = req.params;
 
   const room = await updateRoomById(id, {...data});
+
+  return res.status(200).json({
+    ok: true,
+    room,
+  });
+};
+
+export const deleteRoom = async (
+    req: Request,
+    res: Response,
+) => {
+  const {id} = req.params;
+
+  const room = await deleteRoomById(id);
 
   return res.status(200).json({
     ok: true,

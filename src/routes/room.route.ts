@@ -1,9 +1,9 @@
 import {Router} from 'express';
 
 import {schemaValidation} from '../middlewares';
-import {createRoomSchema, editRoomSchema} from '../schemas';
+import {createRoomSchema, deleteRoomSchema, editRoomSchema} from '../schemas';
 import {validateJwt, validateAdmin} from '../helpers';
-import {createRoom, updateRoom} from '../controllers';
+import {createRoom, deleteRoom, updateRoom} from '../controllers';
 
 export const roomRouter = Router();
 
@@ -25,4 +25,14 @@ roomRouter.put(
       schemaValidation(editRoomSchema),
     ],
     updateRoom,
+);
+
+roomRouter.delete(
+    '/delete/:id',
+    [
+      validateJwt,
+      validateAdmin,
+      schemaValidation(deleteRoomSchema),
+    ],
+    deleteRoom,
 );
