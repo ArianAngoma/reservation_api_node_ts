@@ -2,7 +2,7 @@ import {Router} from 'express';
 
 import {schemaValidation} from '../middlewares';
 import {registerSchema, loginSchema} from '../schemas';
-import {register} from '../controllers';
+import {login, register} from '../controllers';
 
 const router = Router();
 
@@ -15,7 +15,7 @@ router.post(
 router.post(
     '/login',
     [schemaValidation(loginSchema)],
-    () => console.log('Logging in user'),
+    login,
 );
 
 
