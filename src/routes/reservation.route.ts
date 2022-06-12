@@ -6,6 +6,7 @@ import {
   updateReservationSchema,
 } from '../schemas';
 import {validateReservationAuthorization, validateJwt} from '../helpers';
+import {createReservation, updateReservation} from '../controllers';
 
 export const reservationRouter = Router();
 
@@ -15,7 +16,7 @@ reservationRouter.post(
       validateJwt,
       schemaValidation(createReservationSchema),
     ],
-    (req: any) => console.log(req.body),
+    createReservation,
 );
 
 reservationRouter.put(
@@ -25,5 +26,5 @@ reservationRouter.put(
       schemaValidation(updateReservationSchema),
       validateReservationAuthorization,
     ],
-    (req: any) => console.log(req.body),
+    updateReservation,
 );

@@ -30,7 +30,7 @@ export const validateReservationAuthorization = async (
 
   const reservation = await findReservationById(req.params.id);
 
-  if (role !== 'admin') {
+  if (role === 'client') {
     if (reservation!.userId !== id) {
       return res.status(401).json({
         ok: false,

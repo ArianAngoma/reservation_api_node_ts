@@ -4,7 +4,10 @@ import bcryptjs from 'bcryptjs';
 import {createUser, findUser} from '../entities';
 import {generateToken} from '../helpers';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (
+    req: Request,
+    res: Response,
+): Promise<Response> => {
   const {name, username, email, identification, role, password} = req.body;
 
   const salt = bcryptjs.genSaltSync();
@@ -28,7 +31,10 @@ export const register = async (req: Request, res: Response) => {
   });
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (
+    req: Request,
+    res: Response,
+): Promise<Response> => {
   const {username, password} = req.body;
 
   const user = await findUser({username});

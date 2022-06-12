@@ -5,7 +5,7 @@ import {createNewRoom, deleteRoomById, updateRoomById} from '../entities';
 export const createRoom = async (
     req: Request,
     res: Response,
-) => {
+): Promise<Response> => {
   const data = req.body;
 
   const room = await createNewRoom({...data});
@@ -20,7 +20,7 @@ export const createRoom = async (
 export const updateRoom = async (
     req: Request,
     res: Response,
-) => {
+): Promise<Response> => {
   const data = req.body;
   const {id} = req.params;
 
@@ -35,7 +35,7 @@ export const updateRoom = async (
 export const deleteRoom = async (
     req: Request,
     res: Response,
-) => {
+): Promise<Response> => {
   const {id} = req.params;
 
   const room = await deleteRoomById(id);
