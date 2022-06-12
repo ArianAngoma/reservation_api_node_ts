@@ -9,7 +9,8 @@
       "types.d.ts"
     ],
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "inlineSourceMap": true,
     "esModuleInterop": true,

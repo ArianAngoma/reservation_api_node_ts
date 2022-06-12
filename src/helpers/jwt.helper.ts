@@ -46,7 +46,7 @@ export const validateJwt = async (
   } catch (error) {
     return res.status(500).json({
       ok: false,
-      msg: 'Server error',
+      msg: 'Invalid token',
     });
   }
 };
