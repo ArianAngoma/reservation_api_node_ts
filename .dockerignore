@@ -1,0 +1,10 @@
+.git
+.gitignore
+README.md
+jest.config.ts
+example.env
+node_modules
+src/tests
+package-lock.json
+yarn.lock
+.idea
