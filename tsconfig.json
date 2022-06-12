@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
+    "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
     "typeRoots": [
@@ -20,5 +21,11 @@
   },
   "files": [
     "types.d.ts"
+  ],
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
