@@ -3,3 +3,4 @@ export {
   findRoom, findRoomExceptSpecificCollections, createNewRoom, updateRoomById,
   findRoomById, deleteRoomById,
 } from './room.entity';
+export {findReservationById} from './reservation.entity';

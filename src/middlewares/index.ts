@@ -2,5 +2,5 @@ export {schemaValidation} from './validateFields.middleware';
 export {
   userEmailExists, userIdentificationExists, userUsernameExists,
   roomNameExists, roomNameExistsExceptSelf,
-  roomExistsById,
+  roomExistsById, userExistsById, reservationExistsById,
 } from './customValidations.middleware';

@@ -1,9 +1,11 @@
+import {Types} from 'mongoose';
 import {z, RefinementCtx} from 'zod';
 
 import {
+  findReservationById,
   findRoom, findRoomById,
   findRoomExceptSpecificCollections,
-  findUser,
+  findUser, findUserById,
 } from '../entities';
 
 export const userUsernameExists = async (
@@ -13,7 +15,7 @@ export const userUsernameExists = async (
   const user = await findUser({username});
 
   if (!!user) {
-    ctx.addIssue({
+    return ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Username already exists',
     });
@@ -27,7 +29,7 @@ export const userIdentificationExists = async (
   const user = await findUser({identification});
 
   if (!!user) {
-    ctx.addIssue({
+    return ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Identification already exists',
     });
@@ -41,7 +43,7 @@ export const userEmailExists = async (
   const user = await findUser({email});
 
   if (!!user) {
-    ctx.addIssue({
+    return ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Email already exists',
     });
@@ -55,7 +57,7 @@ export const roomNameExists = async (
   const room = await findRoom({name});
 
   if (!!room) {
-    ctx.addIssue({
+    return ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Name already exists',
     });
@@ -73,7 +75,7 @@ export const roomNameExistsExceptSelf = async (
   );
 
   if (!!room) {
-    ctx.addIssue({
+    return ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Name already exists',
     });
@@ -84,12 +86,67 @@ export const roomExistsById = async (
     id: string,
     ctx: RefinementCtx,
 ): Promise<void> => {
+  const isValid = Types.ObjectId.isValid(id);
+
+  if (!isValid) {
+    return ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Invalid ObjectId',
+    });
+  }
+
   const room = await findRoomById(id);
 
   if (!room) {
-    ctx.addIssue({
+    return ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: 'Room does not exist',
+    });
+  }
+};
+
+export const userExistsById = async (
+    id: string,
+    ctx: RefinementCtx,
+): Promise<void> => {
+  const isValid = Types.ObjectId.isValid(id);
+
+  if (!isValid) {
+    return ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Invalid ObjectId',
+    });
+  }
+
+  const user = await findUserById(id);
+
+  if (!user) {
+    return ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'User does not exist',
+    });
+  }
+};
+
+export const reservationExistsById = async (
+    id: string,
+    ctx: RefinementCtx,
+): Promise<void> => {
+  const isValid = Types.ObjectId.isValid(id);
+
+  if (!isValid) {
+    return ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Invalid ObjectId',
+    });
+  }
+
+  const reservation = await findReservationById(id);
+
+  if (!reservation) {
+    return ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Reservation does not exist',
     });
   }
 };

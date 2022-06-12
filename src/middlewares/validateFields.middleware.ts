@@ -13,9 +13,6 @@ export const schemaValidation = (
       body: req.body,
       params: req.params,
       query: req.query,
-      header: req.headers,
-      // @ts-ignore
-      user: req.user,
     });
     next();
   } catch (error) {
@@ -26,6 +23,9 @@ export const schemaValidation = (
         errors: error.issues,
       });
     }
-    return res.status(500).json({message: 'Internal server error'});
+    return res.status(500).json({
+      ok: false,
+      message: 'Internal server error',
+    });
   }
 };

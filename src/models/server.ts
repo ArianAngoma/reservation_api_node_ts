@@ -2,7 +2,7 @@ import express, {Application} from 'express';
 import cors from 'cors';
 
 import {dbConnection} from '../database/config.database';
-import {userRouter, roomRouter} from '../routes';
+import {userRouter, roomRouter, reservationRouter} from '../routes';
 
 class Server {
   app: Application;
@@ -10,6 +10,7 @@ class Server {
   apiPaths = {
     user: '/api/v1/user',
     room: '/api/v1/room',
+    reservation: '/api/v1/reservation',
   };
 
   constructor() {
@@ -32,6 +33,7 @@ class Server {
   routes() {
     this.app.use(this.apiPaths.user, userRouter);
     this.app.use(this.apiPaths.room, roomRouter);
+    this.app.use(this.apiPaths.reservation, reservationRouter);
   }
 
   listen() {

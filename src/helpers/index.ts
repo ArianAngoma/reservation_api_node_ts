@@ -1,2 +1,5 @@
 export {generateToken, validateJwt} from './jwt.helper';
-export {validateAdmin} from './validations.helper';
+export {
+  validateAdmin,
+  validateReservationAuthorization,
+} from './validations.helper';
